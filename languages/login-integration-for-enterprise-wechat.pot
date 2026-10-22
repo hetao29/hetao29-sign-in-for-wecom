@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-05-18 10:17+0800\n"
+"POT-Creation-Date: 2026-10-22 15:23+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,58 +17,59 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: wp-login-integration-for-enterprise-wechat.php:48
+#: login-integration-for-enterprise-wechat.php:51
 msgid "Settings"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:64
-#: wp-login-integration-for-enterprise-wechat.php:68
-msgid "Login by Enterprise Wechat"
+#: login-integration-for-enterprise-wechat.php:70
+#: login-integration-for-enterprise-wechat.php:74
+msgid "Login with Enterprise WeChat"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:93
-msgid "Setting of Login By Qiwei"
+#: login-integration-for-enterprise-wechat.php:114
+msgid "Enterprise WeChat Login Settings"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:94
-msgid "Login By Qiwei"
+#: login-integration-for-enterprise-wechat.php:115
+msgid "Enterprise WeChat Login"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:131
+#: login-integration-for-enterprise-wechat.php:155
 msgid ""
-"Please set each parameter here. For specific meanings, please refer to Qiwei"
+"Enter your Enterprise WeChat application details. See the login instructions "
+"for help."
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:133
+#: login-integration-for-enterprise-wechat.php:157
 msgid "Login instructions"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:141
+#: login-integration-for-enterprise-wechat.php:165
 msgid "CorpId/AppId"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:148
+#: login-integration-for-enterprise-wechat.php:172
 msgid "AgentId"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:155
-msgid "CorpSecrect"
+#: login-integration-for-enterprise-wechat.php:179
+msgid "CorpSecret"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:162
+#: login-integration-for-enterprise-wechat.php:186
 msgid "Auto Register"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:169
+#: login-integration-for-enterprise-wechat.php:193
 msgid "Default Role of New User"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:176
+#: login-integration-for-enterprise-wechat.php:200
 msgid "Disable Default Login"
 msgstr ""
 
-#: wp-login-integration-for-enterprise-wechat.php:190
+#: login-integration-for-enterprise-wechat.php:233
 msgid ""
-"Warning, This will override the default login, You should diable/remove the "
-"plugin if you cannot login by Qiwei."
+"Warning: This replaces password login. Disable the plugin if Enterprise "
+"WeChat login is unavailable."
 msgstr ""

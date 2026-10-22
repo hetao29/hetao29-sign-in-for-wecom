@@ -1,38 +1,16 @@
-# Login Integration For Enterprise Wechat (企微微信/企微登录wordpress）
+# Login Integration for Enterprise WeChat
 
-Contributors: hetao \
-Plugin Name: Login Integration For Enterprise Wechat \
-Plugin URI: https://github.com/hetao29/wp-login-integration-for-enterprise-wechat \
-Tags: qiwei, weichat, weixin \
-Author URI: https://github.com/hetao29/ \
-Author: Hetao \
-Requires at least: 5.0 \
-Tested up to: 6.5 \
-Stable tag: 1.1.0 \
-Version: 1.1.0 \
-License: GPLv2 or later \
-License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Sign in to WordPress with a WeCom (Enterprise WeChat) account. The plugin supports QR code login, in-app authorization, optional automatic user registration, and an option to replace the standard password login form.
 
-Allows user login with qiwei (the weichat of enterprise)
+企业微信登录插件：支持企微扫码登录、应用内授权登录、自动注册用户和按需关闭密码登录。
 
-## Description
+## Setup
 
-Allows user login with qiwei (the weichat of enterprise)
+1. Install and activate the plugin.
+2. Open **Settings → Enterprise WeChat Login** and enter the Corp ID, Agent ID, and app secret for a WeCom application.
+3. Authorize your site's domain in WeCom. The plugin generates an OAuth callback URL under `wp-admin/admin-post.php`.
+4. Verify sign-in before enabling **Disable Default Login**.
 
-1. Allow to login with qiwei
-2. Auto register user with qiwei username (options)
-3. Replace the default login by this plugin  (options)
+## External services
 
-## Installation
-
-1. Upload the `login-by-qiwei` folder to the `/wp-content/plugins/` directory
-2. Activate the plugin through the 'Plugins' menu in WordPress
-3. Setting the options throw "Setting" menu
-
-## Changelog
-
-### 1.0.0
-
-* fist version
-
-### Frequently Asked Questions
+The login page loads the WeCom JavaScript SDK from `wwcdn.weixin.qq.com`. Authentication sends the Corp ID and app secret to the WeCom token API, then sends the access token and authorization code to the WeCom user info API. See the [WeCom developer documentation](https://developer.work.weixin.qq.com/) and [privacy policy](https://work.weixin.qq.com/nl/privacy).
