@@ -6,7 +6,6 @@
  * Version:           1.1.1
  * Requires PHP:      7.0
  * Requires at least: 5.0
- * Tested up to:      7.1
  * Author URI:        https://github.com/hetao29/
  * License:           GNU General Public License v2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
