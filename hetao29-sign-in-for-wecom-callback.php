@@ -108,6 +108,7 @@ class Hetao29_Wecom_Login_Callback {
 			$user = get_user_by( 'id', $user_id );
 		}
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Reuse the WordPress core authentication filter for OAuth logins.
 		$authenticated = apply_filters( 'wp_authenticate_user', $user, '' );
 		if ( is_wp_error( $authenticated ) || ! $authenticated instanceof WP_User ) {
 			self::redirect_to_login();
@@ -115,6 +116,7 @@ class Hetao29_Wecom_Login_Callback {
 		$user = $authenticated;
 		wp_set_current_user( $user->ID );
 		wp_set_auth_cookie( $user->ID );
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Fire the WordPress core login action after setting the auth cookie.
 		do_action( 'wp_login', $user->user_login, $user );
 		wp_safe_redirect( admin_url() );
 		exit;
