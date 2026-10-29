@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Hetao29 Sign-In for WeCom
  * Description:       Enterprise WeChat (WeCom) login with QR code and in-app authorization.
- * Version:           1.2.0
+ * Version:           1.2.1
  * Requires PHP:      7.4
  * Requires at least: 5.0
  * Author:            hetao29
@@ -57,7 +57,7 @@ if ( !class_exists( 'Hetao29_Wecom_Login' ) ) {
 		}
 		function login_enqueue_scripts() {
 				wp_enqueue_script( 'hetao29-wecom-jssdk', 'https://wwcdn.weixin.qq.com/node/open/js/wecom-jssdk-2.3.4.js', array(), '2.3.4', true );
-				wp_enqueue_script( 'hetao29-wecom-login', plugin_dir_url( __FILE__ ) . 'wecom-login.js', array( 'jquery', 'hetao29-wecom-jssdk' ), '1.2.0', true );
+				wp_enqueue_script( 'hetao29-wecom-login', plugin_dir_url( __FILE__ ) . 'wecom-login.js', array( 'jquery', 'hetao29-wecom-jssdk' ), '1.2.1', true );
 				wp_add_inline_script( 'hetao29-wecom-login', 'window.hetao29WecomLoginConfig = ' . wp_json_encode( array(
 					'appid' => $this->options['corpid'],
 					'agentid' => $this->options['agentid'],

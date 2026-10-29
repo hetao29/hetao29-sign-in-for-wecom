@@ -4,7 +4,7 @@ Tags: wecom, wechat, login, oauth, sso
 Requires at least: 5.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -30,8 +30,12 @@ Sign-in requires WeCom. The login panel loads the WeCom JavaScript SDK from `wwc
 
 == Changelog ==
 
+= 1.2.1 =
+* Validate OAuth state with a signed, expiring cookie instead of transient storage.
+* Match WeCom User IDs directly to WordPress usernames, including automatic registration.
+
 = 1.2.0 =
-* Bind sign-in requests to a browser with OAuth state and match WeCom User IDs to WordPress usernames.
+* Bind sign-in requests to a browser with one-time OAuth state and require explicit account mapping.
 * Restore bundled Simplified Chinese translations and the configurable role for automatically registered users.
 * Rename the plugin and prefix stored settings and registered identifiers.
 
