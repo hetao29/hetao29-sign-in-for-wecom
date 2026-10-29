@@ -65,8 +65,10 @@ class Hetao29_Wecom_Login_Callback {
 	}
 
 	public static function handle() {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WeCom OAuth callbacks use the signed, time-limited state cookie verified below instead of a WordPress nonce.
 		$state = isset( $_GET['state'] ) && is_string( $_GET['state'] ) ? sanitize_text_field( wp_unslash( $_GET['state'] ) ) : '';
 		$cookie_state = isset( $_COOKIE['hetao29_wecom_state'] ) && is_string( $_COOKIE['hetao29_wecom_state'] ) ? sanitize_text_field( wp_unslash( $_COOKIE['hetao29_wecom_state'] ) ) : '';
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- The OAuth code is used only after valid_oauth_state() verifies the signed state cookie.
 		$code  = isset( $_GET['code'] ) && is_string( $_GET['code'] ) ? sanitize_text_field( wp_unslash( $_GET['code'] ) ) : '';
 		if ( '' === $code || ! self::valid_oauth_state( $state, $cookie_state ) ) {
 			self::redirect_to_login();
