@@ -1,14 +1,13 @@
-# Login Integration for Enterprise WeChat.
+# Hetao29 Sign-In for WeCom.
 # Copyright (C) 2026
 # This file is distributed under the same license as the plugin.
 # Hetao <hetao@hetao.name>, 2026.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.1.1\n"
+"Project-Id-Version: Hetao29 Sign-In for WeCom 1.2.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-22 15:00+0800\n"
-"PO-Revision-Date: 2026-10-22 15:00+0800\n"
+"PO-Revision-Date: 2026-10-27 00:00+0800\n"
 "Last-Translator: Hetao <hetao@hetao.name>\n"
 "Language-Team: Chinese (Simplified)\n"
 "Language: zh_CN\n"
@@ -16,62 +15,56 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. Name of the plugin
-msgid "Login Integration for Enterprise WeChat"
-msgstr "企业微信登录集成"
+msgid "Hetao29 Sign-In for WeCom"
+msgstr "Hetao29 企业微信登录"
 
-#. Description of the plugin
 msgid "Enterprise WeChat (WeCom) login with QR code and in-app authorization."
 msgstr "企业微信登录：支持扫码登录和应用内授权。"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Settings"
 msgstr "设置"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Login with Enterprise WeChat"
 msgstr "企业微信登录"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Enterprise WeChat Login Settings"
 msgstr "设置企业微信登录参数"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Enterprise WeChat Login"
 msgstr "企业微信登录"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Enter your Enterprise WeChat application details. See the login instructions for help."
 msgstr "请输入企业微信应用参数，详情请参考登录说明。"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Login instructions"
 msgstr "登录说明"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "CorpId/AppId"
 msgstr "企业ID"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "AgentId"
 msgstr "自建应用ID"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "CorpSecret"
 msgstr "密钥"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Auto Register"
 msgstr "自动注册新用户"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Default Role of New User"
 msgstr "新用户默认权限"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Disable Default Login"
 msgstr "禁用系统默认登录"
 
-#: login-integration-for-enterprise-wechat.php
 msgid "Warning: This replaces password login. Disable the plugin if Enterprise WeChat login is unavailable."
 msgstr "警告：启用后将替代密码登录。如果企业微信登录不可用，请禁用本插件。"
+
+msgid "WeCom sign-in"
+msgstr "企业微信登录"
+
+msgid "WeCom User ID"
+msgstr "企业微信用户 ID"
+
+msgid "An administrator can link this account to a WeCom user in the configured enterprise."
+msgstr "管理员可以将此账户绑定到所配置企业中的企业微信用户。"

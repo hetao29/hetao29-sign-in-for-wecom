@@ -2,17 +2,17 @@
 	'use strict';
 
 	function showLoginPanel() {
-		if (!window.ww || !window.wecomLoginConfig || !document.getElementById('login-b')) {
+		if (!window.ww || !window.hetao29WecomLoginConfig || !document.getElementById('login-b')) {
 			return;
 		}
 		window.ww.createWWLoginPanel({
 			el: '#login-b',
 			params: {
 				login_type: 'CorpApp',
-				appid: window.wecomLoginConfig.appid,
-				agentid: window.wecomLoginConfig.agentid,
-				redirect_uri: window.wecomLoginConfig.redirect_uri,
-				state: 'loginState',
+				appid: window.hetao29WecomLoginConfig.appid,
+				agentid: window.hetao29WecomLoginConfig.agentid,
+				redirect_uri: window.hetao29WecomLoginConfig.redirect_uri,
+				state: window.hetao29WecomLoginConfig.state,
 				redirect_type: 'top',
 				panel_size: 'small'
 			}

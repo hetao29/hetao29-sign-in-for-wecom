@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-22 15:23+0800\n"
+"POT-Creation-Date: 2026-10-29 21:04+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,59 +17,72 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: login-integration-for-enterprise-wechat.php:51
+#: hetao29-sign-in-for-wecom.php:56
 msgid "Settings"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:70
-#: login-integration-for-enterprise-wechat.php:74
+#: hetao29-sign-in-for-wecom.php:76 hetao29-sign-in-for-wecom.php:80
 msgid "Login with Enterprise WeChat"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:114
+#: hetao29-sign-in-for-wecom.php:132
 msgid "Enterprise WeChat Login Settings"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:115
+#: hetao29-sign-in-for-wecom.php:133
 msgid "Enterprise WeChat Login"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:155
+#: hetao29-sign-in-for-wecom.php:173
 msgid ""
 "Enter your Enterprise WeChat application details. See the login instructions "
 "for help."
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:157
+#: hetao29-sign-in-for-wecom.php:175
 msgid "Login instructions"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:165
+#: hetao29-sign-in-for-wecom.php:183
 msgid "CorpId/AppId"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:172
+#: hetao29-sign-in-for-wecom.php:190
 msgid "AgentId"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:179
+#: hetao29-sign-in-for-wecom.php:197
 msgid "CorpSecret"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:186
+#: hetao29-sign-in-for-wecom.php:204
 msgid "Auto Register"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:193
+#: hetao29-sign-in-for-wecom.php:211
 msgid "Default Role of New User"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:200
+#: hetao29-sign-in-for-wecom.php:218
 msgid "Disable Default Login"
 msgstr ""
 
-#: login-integration-for-enterprise-wechat.php:233
+#: hetao29-sign-in-for-wecom.php:259
 msgid ""
 "Warning: This replaces password login. Disable the plugin if Enterprise "
 "WeChat login is unavailable."
+msgstr ""
+
+#: hetao29-sign-in-for-wecom.php:268
+msgid "WeCom sign-in"
+msgstr ""
+
+#: hetao29-sign-in-for-wecom.php:269
+msgid "WeCom User ID"
+msgstr ""
+
+#: hetao29-sign-in-for-wecom.php:272
+msgid ""
+"An administrator can link this account to a WeCom user in the configured "
+"enterprise."
 msgstr ""
