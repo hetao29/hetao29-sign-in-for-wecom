@@ -24,6 +24,11 @@ The plugin sends the authorization code to the WeCom API to retrieve the user's 
 4. Test sign-in before enabling the option to replace the standard login form.
 5. To allow an existing user to sign in, make sure their WordPress username matches their WeCom User ID exactly. Automatic registration uses the configured Default Role of New User (subscriber by default).
 
+== Screenshots ==
+
+1. WeCom QR code sign-in on the WordPress login page.
+2. WeCom application settings, automatic registration, and password login options.
+
 == External services ==
 
 Sign-in requires WeCom. The login panel loads the WeCom JavaScript SDK from `wwcdn.weixin.qq.com`. During sign-in, the plugin sends the Corp ID and app secret to the WeCom token API and sends the resulting access token and authorization code to the WeCom user info API. See the [WeCom developer documentation](https://developer.work.weixin.qq.com/) and [privacy policy](https://work.weixin.qq.com/nl/privacy).

@@ -12,6 +12,16 @@ Sign in to WordPress with a WeCom (Enterprise WeChat) account. The plugin suppor
 4. Verify sign-in before enabling **Disable Default Login**.
 5. An existing WordPress account signs in when its username matches the WeCom User ID exactly. Automatic registration creates the account with that User ID as its username and uses the **Default Role of New User** setting (subscriber by default).
 
+## Screenshots
+
+1. WeCom QR code sign-in on the WordPress login page.
+
+   ![WeCom QR code sign-in on the WordPress login page](../assets/screenshot-1.png)
+
+2. WeCom application settings, automatic registration, and password login options.
+
+   ![WeCom application settings](../assets/screenshot-2.png)
+
 ## External services
 
 The login page loads the WeCom JavaScript SDK from `wwcdn.weixin.qq.com`. Authentication sends the Corp ID and app secret to the WeCom token API, then sends the access token and authorization code to the WeCom user info API. See the [WeCom developer documentation](https://developer.work.weixin.qq.com/) and [privacy policy](https://work.weixin.qq.com/nl/privacy).
