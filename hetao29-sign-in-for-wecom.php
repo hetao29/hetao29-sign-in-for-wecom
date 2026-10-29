@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Hetao29 Sign-In for WeCom
- * Description:       Enterprise WeChat (WeCom) login with QR code and in-app authorization.
+ * Description:       WeCom (企业微信登录) for WordPress with QR code and in-app authorization.
  * Version:           1.2.1
  * Requires PHP:      7.4
  * Requires at least: 5.0

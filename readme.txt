@@ -8,11 +8,13 @@ Stable tag: 1.2.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Enterprise WeChat (WeCom) login with QR code and in-app authorization, optional user registration, and configurable password login.
+WeCom (企业微信登录) for WordPress: QR code and in-app sign-in, optional registration and password login controls.
 
 == Description ==
 
 This plugin adds Enterprise WeChat (WeCom) sign-in to the login page. Visitors can log in by scanning a QR code or authorizing inside the WeCom app. Administrators can allow automatic account creation and optionally replace the standard username and password login form.
+
+企业微信登录插件：支持企业微信扫码登录、应用内授权登录、自动注册用户，以及按需关闭 WordPress 密码登录。
 
 The plugin sends the authorization code to the WeCom API to retrieve the user's enterprise ID. It signs in the WordPress user whose username matches that ID exactly. With automatic registration enabled, an unmatched ID creates an account using the ID as its username and the configured default role.
 
