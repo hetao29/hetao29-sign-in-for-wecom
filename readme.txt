@@ -2,9 +2,9 @@
 Contributors: hetao29
 Tags: wecom, wechat, login, oauth, sso
 Requires at least: 5.0
-Tested up to: 7.1
+Tested up to: 7.2
 Requires PHP: 7.4
-Stable tag: 1.2.1
+Stable tag: 1.2.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,6 +36,13 @@ The plugin sends the authorization code to the WeCom API to retrieve the user's 
 Sign-in requires WeCom. The login panel loads the WeCom JavaScript SDK from `wwcdn.weixin.qq.com`. During sign-in, the plugin sends the Corp ID and app secret to the WeCom token API and sends the resulting access token and authorization code to the WeCom user info API. See the [WeCom developer documentation](https://developer.work.weixin.qq.com/) and [privacy policy](https://work.weixin.qq.com/nl/privacy).
 
 == Changelog ==
+
+= 1.2.2 =
+* Test authentication and registration against WordPress 7.2 RC3 on PHP 8.4.
+* Remove the login script's jQuery dependency and preserve the password form if the WeCom SDK fails to load.
+* Preserve core logout and password recovery actions when replacing the login form, and disable both username and email password authentication.
+* Validate WeCom HTTP and JSON responses, respect token expiration, and refresh invalid or expired tokens once.
+* Handle malformed stored credentials safely and mask the app secret in settings.
 
 = 1.2.1 =
 * Validate OAuth state with a signed, expiring cookie instead of transient storage.

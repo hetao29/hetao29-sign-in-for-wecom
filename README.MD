@@ -25,3 +25,19 @@ Sign in to WordPress with a WeCom (Enterprise WeChat) account. The plugin suppor
 ## External services
 
 The login page loads the WeCom JavaScript SDK from `wwcdn.weixin.qq.com`. Authentication sends the Corp ID and app secret to the WeCom token API, then sends the access token and authorization code to the WeCom user info API. See the [WeCom developer documentation](https://developer.work.weixin.qq.com/) and [privacy policy](https://work.weixin.qq.com/nl/privacy).
+
+## Compatibility and verification
+
+Version 1.2.2 was tested on WordPress 7.2 RC3 with PHP 8.4.28. The plugin does not integrate with media uploads, block editor components, the Abilities API, REST endpoints, admin menu icon overrides, or the Interactivity API. Its login script uses native browser APIs and does not require jQuery or jQuery Migrate.
+
+On a **disposable WordPress installation** with this plugin activated, run from this repository (replace `/path/to/test-wordpress`):
+
+```sh
+WECOM_RUN_TESTS=1 wp eval-file tests/compatibility.php --path=/path/to/test-wordpress
+node --test tests/frontend.test.js
+wp plugin check hetao29-sign-in-for-wecom --path=/path/to/test-wordpress --require=/path/to/test-wordpress/wp-content/plugins/plugin-check/cli.php --mode=update
+```
+
+The PHP suite uses real WordPress authentication and user APIs with simulated WeCom HTTP responses. It covers signed state, token caching and refresh, failed responses, exact username matching, authentication filters, automatic registration, and core login actions. It creates and deletes test users. The JavaScript suite covers SDK failures, retry, DOM readiness, and preserving the password form. Install Plugin Check on the disposable site before running its command.
+
+Before publishing, also verify QR-code and in-app authorization using a real WeCom application and authorized callback domain, and repeat runtime testing on PHP 8.6. These require an external application and a PHP runtime that were not available in the local test environment. Update the readme in the WordPress.org stable tag when publishing; local metadata changes do not update the directory automatically.

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Hetao29 Sign-In for WeCom
  * Description:       WeCom (企业微信登录) for WordPress with QR code and in-app authorization.
- * Version:           1.2.1
+ * Version:           1.2.2
  * Requires PHP:      7.4
  * Requires at least: 5.0
  * Author:            hetao29
@@ -30,10 +30,17 @@ if ( !class_exists( 'Hetao29_Wecom_Login' ) ) {
 		private $oauth_state = '';
 
 		function __construct(){
-				$this->options= get_option($this->option_key, array());
+				$options = get_option( $this->option_key, array() );
+				$this->options = is_array( $options ) ? $options : array();
+				foreach ( array( 'corpid', 'agentid', 'corpsecret' ) as $key ) {
+					if ( ! isset( $this->options[ $key ] ) || ! is_string( $this->options[ $key ] ) ) {
+						$this->options[ $key ] = '';
+					}
+				}
 			if(!empty($this->options['agentid']) && !empty($this->options['corpid']) && !empty($this->options['corpsecret'])){
 				if(!empty($this->options['disable_system_login']) && $this->options['disable_system_login']=="on"){
-					remove_filter('authenticate', 'wp_authenticate_username_password', 20, 3);
+					remove_filter('authenticate', 'wp_authenticate_username_password', 20);
+					remove_filter('authenticate', 'wp_authenticate_email_password', 20);
 					add_action('login_init', array( $this, 'login_init' ) );
 				}else{
 					add_action( 'login_form', array($this,'login_form' ));
@@ -41,8 +48,8 @@ if ( !class_exists( 'Hetao29_Wecom_Login' ) ) {
 			}
 				if ( ! empty( $this->options['agentid'] ) && ! empty( $this->options['corpid'] ) && ! empty( $this->options['corpsecret'] ) ) {
 					add_action( 'login_enqueue_scripts', array( $this, 'login_enqueue_scripts' ) );
+					add_action( 'login_init', array( $this, 'prepare_oauth_state' ), 0 );
 				}
-				add_action( 'login_init', array( $this, 'prepare_oauth_state' ), 0 );
 				add_action( 'init', array( $this, 'load_bundled_translation' ) );
 			add_action('admin_init',array($this,'register_setting'));
 			add_action('admin_menu', array($this,'register_setting_menu'));
@@ -57,13 +64,13 @@ if ( !class_exists( 'Hetao29_Wecom_Login' ) ) {
 		}
 		function login_enqueue_scripts() {
 				wp_enqueue_script( 'hetao29-wecom-jssdk', 'https://wwcdn.weixin.qq.com/node/open/js/wecom-jssdk-2.3.4.js', array(), '2.3.4', true );
-				wp_enqueue_script( 'hetao29-wecom-login', plugin_dir_url( __FILE__ ) . 'wecom-login.js', array( 'jquery', 'hetao29-wecom-jssdk' ), '1.2.1', true );
+				wp_enqueue_script( 'hetao29-wecom-login', plugin_dir_url( __FILE__ ) . 'wecom-login.js', array( 'hetao29-wecom-jssdk' ), '1.2.2', true );
 				wp_add_inline_script( 'hetao29-wecom-login', 'window.hetao29WecomLoginConfig = ' . wp_json_encode( array(
 					'appid' => $this->options['corpid'],
 					'agentid' => $this->options['agentid'],
 					'redirect_uri' => $this->get_callback_url(),
 					'state' => $this->oauth_state,
-				) ) . ';', 'before' );
+				), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT ) . ';', 'before' );
 		}
 		function login_form() {
 				if($this->isQiyeWeixin()){
@@ -100,6 +107,12 @@ if ( !class_exists( 'Hetao29_Wecom_Login' ) ) {
 				) );
 			}
 		function login_init(){
+			// Preserve core logout, password recovery, and other login actions.
+			// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Only selects which login screen to display; core validates action-specific nonces.
+			$action = isset( $_REQUEST['action'] ) && is_string( $_REQUEST['action'] ) ? sanitize_key( wp_unslash( $_REQUEST['action'] ) ) : 'login';
+			if ( 'login' !== $action ) {
+				return;
+			}
 			if($this->isQiyeWeixin() && !isset($_GET['loggedout'])){ // phpcs:ignore WordPress.Security.NonceVerification.Recommended
 					add_filter( 'allowed_redirect_hosts', array( $this, 'allow_wecom_redirect_host' ) );
 					wp_safe_redirect( $this->get_login_url() );
@@ -259,7 +272,7 @@ if ( !class_exists( 'Hetao29_Wecom_Login' ) ) {
 				echo sprintf('<input type="text" name="%s[corpid]" value="%s"/>', esc_attr( $this->option_key ), esc_attr($this->options['corpid']??''));
 		}
 		function setting_corpsecret(){
-				echo sprintf('<input type="text" style="width:60%%" name="%s[corpsecret]" value="%s"/>', esc_attr( $this->option_key ), esc_attr($this->options['corpsecret']??''));
+				echo sprintf('<input type="password" autocomplete="new-password" style="width:60%%" name="%s[corpsecret]" value="%s"/>', esc_attr( $this->option_key ), esc_attr($this->options['corpsecret']??''));
 		}
 		function setting_agentid(){
 				echo sprintf('<input type="text" name="%s[agentid]" value="%s"/>', esc_attr( $this->option_key ), esc_attr($this->options['agentid']??''));

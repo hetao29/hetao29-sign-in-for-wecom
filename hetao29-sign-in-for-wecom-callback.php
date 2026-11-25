@@ -6,32 +6,35 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Hetao29_Wecom_Login_Callback {
-	private static function get_token() {
+	private static function get_token( $refresh = false ) {
 		$options = get_option( 'hetao29_wecom_options', array() );
-		if ( empty( $options['corpid'] ) || empty( $options['agentid'] ) || empty( $options['corpsecret'] ) ) {
-			self::redirect_to_login();
-		}
-		$corp_id = $options['corpid'] ?? '';
-		$secret  = $options['corpsecret'] ?? '';
-		if ( ! $corp_id || ! $secret ) {
+		if ( ! is_array( $options ) ) {
 			return false;
 		}
+		foreach ( array( 'corpid', 'agentid', 'corpsecret' ) as $field ) {
+			if ( empty( $options[ $field ] ) || ! is_string( $options[ $field ] ) ) {
+				return false;
+			}
+		}
+		$corp_id = $options['corpid'];
+		$secret  = $options['corpsecret'];
 
 		$key   = 'hetao29_wecom_token_' . md5( $corp_id . ':' . $secret );
+		if ( $refresh ) {
+			delete_transient( $key );
+		}
 		$token = get_transient( $key );
-		if ( false !== $token ) {
+		if ( is_string( $token ) && '' !== $token ) {
 			return $token;
 		}
 
-		$response = wp_remote_get( add_query_arg( array( 'corpid' => $corp_id, 'corpsecret' => $secret ), 'https://qyapi.weixin.qq.com/cgi-bin/gettoken' ) );
-		if ( is_wp_error( $response ) ) {
+		$data = self::api_get( 'gettoken', array( 'corpid' => $corp_id, 'corpsecret' => $secret ) );
+		if ( ! $data || ! self::api_success( $data ) || empty( $data->access_token ) || ! is_string( $data->access_token ) ||
+			! isset( $data->expires_in ) || ! is_int( $data->expires_in ) || $data->expires_in <= 0 ) {
 			return false;
 		}
-		$data = json_decode( wp_remote_retrieve_body( $response ) );
-		if ( empty( $data->access_token ) ) {
-			return false;
-		}
-		set_transient( $key, $data->access_token, HOUR_IN_SECONDS );
+		// Refresh before WeCom's expiry, including when it returns a shorter lifetime.
+		set_transient( $key, $data->access_token, max( 1, min( $data->expires_in, 2 * HOUR_IN_SECONDS ) - 60 ) );
 		return $data->access_token;
 	}
 
@@ -40,11 +43,32 @@ class Hetao29_Wecom_Login_Callback {
 		if ( ! $token ) {
 			return false;
 		}
-		$response = wp_remote_get( add_query_arg( array( 'access_token' => $token, 'code' => $code ), 'https://qyapi.weixin.qq.com/cgi-bin/auth/getuserinfo' ) );
-		if ( is_wp_error( $response ) ) {
+		$data = self::api_get( 'auth/getuserinfo', array( 'access_token' => $token, 'code' => $code ) );
+		// Retry once only when WeCom explicitly rejects an invalid or expired token.
+		if ( $data && isset( $data->errcode ) && in_array( $data->errcode, array( 40014, 42001 ), true ) ) {
+			$token = self::get_token( true );
+			if ( ! $token ) {
+				return false;
+			}
+			$data = self::api_get( 'auth/getuserinfo', array( 'access_token' => $token, 'code' => $code ) );
+		}
+		return $data && self::api_success( $data ) ? $data : false;
+	}
+
+	private static function api_get( $path, $query ) {
+		$response = wp_remote_get(
+			add_query_arg( $query, 'https://qyapi.weixin.qq.com/cgi-bin/' . $path ),
+			array( 'timeout' => 10, 'redirection' => 0 )
+		);
+		if ( is_wp_error( $response ) || 200 !== wp_remote_retrieve_response_code( $response ) ) {
 			return false;
 		}
-		return json_decode( wp_remote_retrieve_body( $response ) );
+		$data = json_decode( wp_remote_retrieve_body( $response ) );
+		return is_object( $data ) ? $data : false;
+	}
+
+	private static function api_success( $data ) {
+		return ! property_exists( $data, 'errcode' ) || 0 === $data->errcode;
 	}
 
 	private static function valid_oauth_state( $state, $cookie_state ) {
